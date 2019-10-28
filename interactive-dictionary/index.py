@@ -5,6 +5,7 @@ def dictionary():
   json_data = json.load(source)
 
   word = input("Enter a word to search for: ")
+  word = word.lower()
   
   # handle no inputs
   while not word or word == '':
