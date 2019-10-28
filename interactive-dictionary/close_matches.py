@@ -15,12 +15,13 @@ def handle_close_matches(word, close_matches):
   suggestion = close_matches[0]
   print("Word not found.\nDid you mean {}?".format(suggestion))
   prompt = input("Yes/No, or 'exit' to quit: ")
-  if prompt == "Yes".lower():
+  prompt = prompt.lower()
+  if prompt == "yes":
     word = suggestion
-  elif prompt == "NO".lower():
+  elif prompt == "no":
     print("The word you searched for does not exist!")
     exit()
-  elif prompt == "exit".lower():
+  elif prompt == "exit":
     print("Quitting now...")
     exit()
   else:
