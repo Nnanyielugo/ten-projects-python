@@ -1,5 +1,6 @@
 import json
 from difflib import get_close_matches
+from close_matches import handle_close_matches
 
 def dictionary():
   source = open("data.json")
@@ -15,21 +16,7 @@ def dictionary():
       if not word in json_data:
         close_matches = get_close_matches(word, json_data.keys(), cutoff=0.8)
         if close_matches:
-          # make suggestion and substitute word for suggestion if user wishes
-          suggestion = close_matches[0]
-          print("Word not found.\nDid you mean {}?".format(suggestion))
-          prompt = input("Yes/No, or 'exit' to quit: ")
-          if prompt == "Yes":
-            word = suggestion
-          elif prompt == "NO":
-            print("The word you searched for does not exist!")
-            return
-          elif prompt == "exit":
-            print("Quitting now...")
-            return
-          else:
-            print("We did not understand your response. Please try again")
-            word = input("Enter a word to search for: ")
+          word = handle_close_matches(word, close_matches)
         else:
           print("The word you searched for does not exist!")
           return
