@@ -40,9 +40,12 @@ def dictionary():
   definitions = json_data[word]
   # prettify output
   print()
-  print("{}: ".format(word.capitalize()))
+  print("{}: {} {}:".format(word.capitalize(), len(definitions), "definition" if len(definitions)== 1 else "definitions"))
   for index, definition in enumerate(definitions):
-    print('{}. {}'.format(index + 1, definition))
+    if len(definitions) == 1:
+      print(definition)
+    else:
+      print('{}. {}'.format(index + 1, definition))
   print()
 
 dictionary()
